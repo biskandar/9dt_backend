@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *
  */
 public class PostMoveRequest {
+
   private Integer column;
 
   public PostMoveRequest() {
@@ -44,4 +45,5 @@ public class PostMoveRequest {
       return new PostMoveRequest(this);
     }
   }
+
 }

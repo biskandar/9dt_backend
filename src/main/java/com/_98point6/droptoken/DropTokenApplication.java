@@ -1,7 +1,9 @@
 package com._98point6.droptoken;
 
 import com._98point6.droptoken.dao.GameDAO;
+import com._98point6.droptoken.dao.MoveDAO;
 import com._98point6.droptoken.entity.GameEntity;
+import com._98point6.droptoken.entity.MoveEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
@@ -23,12 +25,13 @@ public class DropTokenApplication extends Application<DropTokenConfiguration> {
     new DropTokenApplication().run(args);
   }
 
-  private final HibernateBundle<DropTokenConfiguration> hibernate = new HibernateBundle<DropTokenConfiguration>(GameEntity.class) {
-    @Override
-    public DataSourceFactory getDataSourceFactory(DropTokenConfiguration configuration) {
-      return configuration.getDatabaseAppDataSourceFactory();
-    }
-  };
+  private final HibernateBundle<DropTokenConfiguration> hibernate =
+      new HibernateBundle<DropTokenConfiguration>(GameEntity.class, MoveEntity.class) {
+        @Override
+        public DataSourceFactory getDataSourceFactory(DropTokenConfiguration configuration) {
+          return configuration.getDataSourceFactory();
+        }
+      };
 
   @Override
   public String getName() {
@@ -45,7 +48,9 @@ public class DropTokenApplication extends Application<DropTokenConfiguration> {
                   Environment environment) {
 
     final GameDAO gameDAO = new GameDAO(hibernate.getSessionFactory());
+    final MoveDAO moveDAO = new MoveDAO(hibernate.getSessionFactory());
 
+    // setup object mapper
     environment.getObjectMapper()
         .setSerializationInclusion(JsonInclude.Include.NON_NULL)
         .registerModule(new Jdk8Module());
@@ -57,7 +62,7 @@ public class DropTokenApplication extends Application<DropTokenConfiguration> {
     environment.jersey().register(new JsonProcessingExceptionMapper());
     environment.jersey().register(new EarlyEofExceptionMapper());
 
-    final DropTokenResource resource = new DropTokenResource(gameDAO);
+    final DropTokenResource resource = new DropTokenResource(gameDAO, moveDAO);
     environment.jersey().register(resource);
 
   }

@@ -8,6 +8,7 @@ import java.util.List;
  *
  */
 public class GetMovesResponse {
+
   private List<GetMoveResponse> moves;
 
   public GetMovesResponse() {
@@ -38,4 +39,5 @@ public class GetMovesResponse {
       return new GetMovesResponse(this);
     }
   }
+
 }

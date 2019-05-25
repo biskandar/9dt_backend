@@ -9,6 +9,7 @@ import java.util.Optional;
  *
  */
 public class GameStatusResponse {
+
   private List<String> players;
   private Integer moves;
   private String winner;
@@ -19,7 +20,7 @@ public class GameStatusResponse {
 
   private GameStatusResponse(Builder builder) {
     this.players = Preconditions.checkNotNull(builder.players);
-    this.moves = Preconditions.checkNotNull(builder.moves);
+    this.moves = builder.moves;
     this.winner = builder.winner;
     this.state = Preconditions.checkNotNull(builder.state);
   }
@@ -32,8 +33,8 @@ public class GameStatusResponse {
     return moves;
   }
 
-  public Optional<String> getWinner() {
-    return Optional.ofNullable(winner);
+  public String getWinner() {
+    return winner;
   }
 
   public String getState() {
@@ -78,4 +79,5 @@ public class GameStatusResponse {
       return new GameStatusResponse(this);
     }
   }
+
 }

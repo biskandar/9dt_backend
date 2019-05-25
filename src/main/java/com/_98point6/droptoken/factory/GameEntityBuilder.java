@@ -1,5 +1,6 @@
 package com._98point6.droptoken.factory;
 
+import com._98point6.droptoken.common.GameState;
 import com._98point6.droptoken.entity.GameEntity;
 
 public final class GameEntityBuilder {
@@ -8,6 +9,8 @@ public final class GameEntityBuilder {
   private String players;
   private int columns;
   private int rows;
+  private GameState state;
+  private String winner;
 
   private GameEntityBuilder() {
   }
@@ -36,12 +39,24 @@ public final class GameEntityBuilder {
     return this;
   }
 
+  public GameEntityBuilder withState(GameState state) {
+    this.state = state;
+    return this;
+  }
+
+  public GameEntityBuilder withWinner(String winner) {
+    this.winner = winner;
+    return this;
+  }
+
   public GameEntity build() {
     GameEntity gameEntity = new GameEntity();
     gameEntity.setGameId(gameId);
     gameEntity.setPlayers(players);
     gameEntity.setColumns(columns);
     gameEntity.setRows(rows);
+    gameEntity.setState(state);
+    gameEntity.setWinner(winner);
     return gameEntity;
   }
 

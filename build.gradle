@@ -37,20 +37,21 @@ repositories {
 }
 
 dependencies {
-    compile (
-        'io.dropwizard:dropwizard-core:' + dropwizardVersion,
-        'io.dropwizard:dropwizard-hibernate:' + dropwizardVersion,
-        'io.dropwizard:dropwizard-jersey:' + dropwizardVersion,
-        'com.fasterxml.jackson.core:jackson-databind:' + jacksonVersion,
-        'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:' + jacksonVersion,
-        'com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:' + jacksonVersion,
-        'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:' + jacksonVersion,
-        'com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:' + jacksonVersion,
-        'com.h2database:h2:1.4.197',
-        'org.flywaydb:flyway-gradle-plugin:3.0'
+    compile(
+            'io.dropwizard:dropwizard-core:' + dropwizardVersion,
+            'io.dropwizard:dropwizard-hibernate:' + dropwizardVersion,
+            'io.dropwizard:dropwizard-jersey:' + dropwizardVersion,
+            'com.fasterxml.jackson.core:jackson-databind:' + jacksonVersion,
+            'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:' + jacksonVersion,
+            'com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:' + jacksonVersion,
+            'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:' + jacksonVersion,
+            'com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:' + jacksonVersion,
+            'com.h2database:h2:1.4.197',
+            'org.flywaydb:flyway-gradle-plugin:3.0'
     )
-    testCompile (
-        'io.dropwizard:dropwizard-testing:' + dropwizardVersion,
+    testCompile(
+            'io.dropwizard:dropwizard-testing:' + dropwizardVersion,
+            'org.mockito:mockito-core:2.27.0'
     )
 }
 

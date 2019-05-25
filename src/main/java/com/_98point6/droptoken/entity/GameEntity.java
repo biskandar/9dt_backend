@@ -1,5 +1,6 @@
 package com._98point6.droptoken.entity;
 
+import com._98point6.droptoken.common.GameState;
 import com._98point6.droptoken.common.StringPrefixedSequenceIdGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -18,8 +19,8 @@ public class GameEntity {
       strategy = "com._98point6.droptoken.common.StringPrefixedSequenceIdGenerator",
       parameters = {
           @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
-          @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "gameid"),
-          @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%d"),
+          @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "G"),
+          @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d"),
       }
   )
   private String gameId;
@@ -35,6 +36,13 @@ public class GameEntity {
   @Column(name = "ROWS", nullable = false)
   @NotNull
   private int rows;
+
+  @Column(name = "STATE")
+  @Enumerated(EnumType.STRING)
+  private GameState state;
+
+  @Column(name = "WINNER")
+  private String winner;
 
   public String getGameId() {
     return gameId;
@@ -68,15 +76,35 @@ public class GameEntity {
     this.rows = rows;
   }
 
+  public GameState getState() {
+    return state;
+  }
+
+  public void setState(GameState state) {
+    this.state = state;
+  }
+
+  public String getWinner() {
+    return winner;
+  }
+
+  public void setWinner(String winner) {
+    this.winner = winner;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (!(o instanceof GameEntity)) return false;
+
     GameEntity that = (GameEntity) o;
+
     if (getColumns() != that.getColumns()) return false;
     if (getRows() != that.getRows()) return false;
     if (getGameId() != null ? !getGameId().equals(that.getGameId()) : that.getGameId() != null) return false;
-    return getPlayers() != null ? getPlayers().equals(that.getPlayers()) : that.getPlayers() == null;
+    if (getPlayers() != null ? !getPlayers().equals(that.getPlayers()) : that.getPlayers() != null) return false;
+    if (getState() != null ? !getState().equals(that.getState()) : that.getState() != null) return false;
+    return getWinner() != null ? getWinner().equals(that.getWinner()) : that.getWinner() == null;
 
   }
 
@@ -86,17 +114,22 @@ public class GameEntity {
     result = 31 * result + (getPlayers() != null ? getPlayers().hashCode() : 0);
     result = 31 * result + getColumns();
     result = 31 * result + getRows();
+    result = 31 * result + (getState() != null ? getState().hashCode() : 0);
+    result = 31 * result + (getWinner() != null ? getWinner().hashCode() : 0);
     return result;
   }
 
   @Override
   public String toString() {
-    return "GameEntity{" +
-        "gameId='" + gameId + '\'' +
-        ", players='" + players + '\'' +
-        ", columns=" + columns +
-        ", rows=" + rows +
-        '}';
+    final StringBuilder sb = new StringBuilder("GameEntity{");
+    sb.append("gameId='").append(gameId).append('\'');
+    sb.append(", players='").append(players).append('\'');
+    sb.append(", columns=").append(columns);
+    sb.append(", rows=").append(rows);
+    sb.append(", state='").append(state).append('\'');
+    sb.append(", winner='").append(winner).append('\'');
+    sb.append('}');
+    return sb.toString();
   }
 
 }

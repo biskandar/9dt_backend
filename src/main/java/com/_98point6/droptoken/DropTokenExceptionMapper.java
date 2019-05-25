@@ -16,4 +16,5 @@ public class DropTokenExceptionMapper implements ExceptionMapper<RuntimeExceptio
     logger.error("Unhandled exception.", e);
     return Response.status(500).build();
   }
+
 }
