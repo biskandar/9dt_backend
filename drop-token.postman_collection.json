@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "4a4d8e15-da34-4d73-9323-9a864bf08ae2",
+		"name": "drop-token",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/drop_token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/drop_token",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drop_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/drop_token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n\t\"players\": [\"p1\", \"p2\"],\r\n\t\"columns\": 4,\r\n\t\"rows\": 4\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/drop_token",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drop_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/drop_token/{game-id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/drop_token/G00003",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drop_token",
+						"G00003"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/drop_token/{game-id}/{player-name}",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"column\": 2\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/drop_token/G00001/p1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drop_token",
+						"G00001",
+						"p1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/drop_token/{game-id}|/moves/{move-id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/drop_token/G00001/moves/M00052",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drop_token",
+						"G00001",
+						"moves",
+						"M00052"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/drop_token/{game-id}/moves",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/drop_token/G00001/moves?start=0&until=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drop_token",
+						"G00001",
+						"moves"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0"
+						},
+						{
+							"key": "until",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/drop_token/{game-id}/{player-name}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/drop_token/G00001/p1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drop_token",
+						"G00001",
+						"p1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
