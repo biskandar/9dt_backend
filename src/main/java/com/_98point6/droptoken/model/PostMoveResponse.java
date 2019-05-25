@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *
  */
 public class PostMoveResponse {
+
   private String moveLink;
 
   public PostMoveResponse() {
@@ -44,4 +45,5 @@ public class PostMoveResponse {
       return new PostMoveResponse(this);
     }
   }
+
 }

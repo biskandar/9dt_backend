@@ -17,8 +17,8 @@ public class GameDAO extends AbstractDAO<GameEntity> {
     return (List<GameEntity>) currentSession().createQuery("from GameEntity").list();
   }
 
-  public GameEntity findById(int id) {
-    return (GameEntity) currentSession().get(GameEntity.class, id);
+  public GameEntity findById(String gameId) {
+    return (GameEntity) currentSession().get(GameEntity.class, gameId);
   }
 
   public void delete(GameEntity gameEntity) {

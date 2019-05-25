@@ -5,6 +5,7 @@ import com.google.common.base.Preconditions;
 import java.util.Optional;
 
 public class GetMoveResponse {
+
   private String type;
   private String player;
   private Integer column;
@@ -62,4 +63,5 @@ public class GetMoveResponse {
       return new GetMoveResponse(this);
     }
   }
+
 }

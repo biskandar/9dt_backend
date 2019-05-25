@@ -34,7 +34,7 @@ public class DropTokenConfiguration extends Configuration {
   @JsonProperty("database")
   private DataSourceFactory database = new DataSourceFactory();
 
-  public DataSourceFactory getDatabaseAppDataSourceFactory() {
+  public DataSourceFactory getDataSourceFactory() {
     return database;
   }
 
