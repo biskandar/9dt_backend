@@ -10,7 +10,7 @@
     <properties>
         <dropwizard.version>1.0.5</dropwizard.version>
         <jackson.version>2.8.6</jackson.version>
-        <h2.version>1.4.181</h2.version>
+        <h2.version>2.1.210</h2.version>
     </properties>
     <build>
         <plugins>
